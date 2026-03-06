@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 =============================================================
-  Options Scalper Bot v3.0 - main.py
+  Options Scalper Bot v5.0 - main.py
   AI-Powered Options Trading Signal System
   Magnificent 7 + QQQ + SPY
   3-Layer AI: XGBoost + LSTM + Reinforcement Learning
@@ -212,7 +212,7 @@ def run_scanner():
     last_ctx_refresh  = 0
     CTX_REFRESH_SECS  = 300
 
-    # v4.0: بيانات السيولة اليومية (تُحدَّث مرة عند الفتح)
+    # v5.0: بيانات السيولة اليومية (تُحدَّث مرة عند الفتح)
     daily_liquidity   = {}   # symbol -> dict من get_liquidity_levels
     last_liq_refresh  = 0
     LIQ_REFRESH_SECS  = 1800  # كل 30 دقيقة
@@ -231,7 +231,7 @@ def run_scanner():
         logger.info("AI Brain: %s", "READY" if ai_ready else "FALLBACK MODE")
 
     logger.info("=" * 60)
-    logger.info("  Options Scalper Bot v3.0 - STARTED")
+    logger.info("  Options Scalper Bot v5.0 - STARTED")
     logger.info("  AI: %s", "3-Layer Active" if ai_ready else "Disabled")
     logger.info("  Watching: %s", ", ".join(WATCHLIST))
     logger.info("  Scan interval: %ds", SCAN_INTERVAL_SECONDS)
@@ -276,7 +276,7 @@ def run_scanner():
                 except Exception as e:
                     logger.warning("Headlines fetch failed: %s", e)
 
-            # v4.0: تحديث مستويات السيولة اليومية
+            # v5.0: تحديث مستويات السيولة اليومية
             if now_ts - last_liq_refresh > LIQ_REFRESH_SECS:
                 logger.info("Refreshing daily liquidity levels...")
                 for sym in WATCHLIST:
@@ -322,7 +322,7 @@ def run_scanner():
                             df_day = compute_all_indicators(df_day, mode="day")
                             signal = engine.analyze_day(symbol, df_day)
 
-                    # v4.0: إضافة بيانات السيولة اليومية للإشارة
+                    # v5.0: إضافة بيانات السيولة اليومية للإشارة
                     if signal is not None and symbol in daily_liquidity:
                         liq = daily_liquidity[symbol]
                         signal.pdh = liq.get("PDH")
@@ -418,7 +418,7 @@ def run_scanner():
             logger.info("Bot stopped by user.")
             try:
                 from notifier import send_message
-                send_message("*Options Scalper Bot v3.0 - STOPPED*")
+                send_message("*Options Scalper Bot v5.0 - STOPPED*")
             except Exception:
                 pass
             break

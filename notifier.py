@@ -1,6 +1,6 @@
 """
 =============================================================
-  Options Scalper Bot v2.0 - notifier.py
+  Options Scalper Bot v5.0 - notifier.py
   Professional Telegram Notification System
   - Rich signal messages with all layers
   - Market context summary
@@ -84,7 +84,7 @@ REGIME_EMOJI = {
 
 def format_signal_message(signal: Signal) -> str:
     """
-    Format a rich professional signal message for Telegram — v4.0.
+    Format a rich professional signal message for Telegram — v5.0.
     يتضمن: تصنيف A/B/C + أهداف TP1/TP2/TP3 + حالة السوق + مستويات السيولة
     """
     dir_emoji   = DIRECTION_EMOJI.get(signal.direction, "⚪")
@@ -324,7 +324,7 @@ def send_message(text: str) -> bool:
 
 
 def send_startup_message(ai_ready: bool = False) -> bool:
-    """Send bot startup notification — v4.0."""
+    """Send bot startup notification — v5.0."""
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     symbols_str = _escape("AAPL \u2022 MSFT \u2022 NVDA \u2022 GOOGL \u2022 AMZN \u2022 META \u2022 TSLA \u2022 QQQ \u2022 SPY")
     ai_status = "3\-Layer AI Active \(XGBoost \+ LSTM \+ RL\)" if ai_ready else "Rule\-Based Mode"
